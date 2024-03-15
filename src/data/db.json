@@ -1,0 +1,317 @@
+{
+  "product": [
+    {
+      "id": "1",
+      "category": "best seller",
+      "name": "Double pocket knit jacket with long sleeves",
+      "price": 2990,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "../../public/images/product-1.0.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.0.1.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.0.2.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.0.3.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.0.4.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.1.webp",
+          "color": "chocolate"
+        },
+        {
+          "dataPreview": "../../public/images/product-1.2.webp",
+          "color": "black"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "dataColor": [
+        {
+          "name": "cream",
+          "hexCode": "bg-FAF6F3"
+        },
+        {
+          "name": "chocolate",
+          "hexCode": "bg-836949"
+        },
+        {
+          "name": "black",
+          "hexCode": "bg-FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "category": "autumn",
+      "name": "Half-Zip Sweater (Long Sleeve) (Border)",
+      "price": 2990,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "../../public/images/product-2.0.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-2.1.webp",
+          "color": "black"
+        },
+        {
+          "dataPreview": "../../public/images/product-2.1.1.avif",
+          "color": "black"
+        },
+        {
+          "dataPreview": "../../public/images/product-2.1.2.avif",
+          "color": "black"
+        },
+        {
+          "dataPreview": "../../public/images/product-2.1.3.avif",
+          "color": "black"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "dataColor": [
+        {
+          "name": "cream",
+          "hexCode": "bg-FAF6F3"
+        },
+        {
+          "name": "black",
+          "hexCode": "bg-FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "category": "daily",
+      "name": "Bouclé knit jacket (long sleeves) + E (can be set up)",
+      "price": 2990,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "../../public/images/product-8.0.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.0.1.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.0.2.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.0.3.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.1.webp",
+          "color": "black"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.0.4.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-8.1.1.avif",
+          "color": "black"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "dataColor": [
+        {
+          "name": "cream",
+          "hexCode": "bg-FAF6F3"
+        },
+        {
+          "name": "black",
+          "hexCode": "bg-FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "category": "best seller",
+      "name": "Mesh Sweater (Long Sleeve)",
+      "price": 1990,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "../../public/images/product-4.0.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.1.webp",
+          "color": "yellow"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.1.1.avif",
+          "color": "yellow"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.1.2.avif",
+          "color": "yellow"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.1.3.avif",
+          "color": "yellow"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.2.webp",
+          "color": "black"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.0.1.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.1.4.avif",
+          "color": "yellow"
+        },
+        {
+          "dataPreview": "../../public/images/product-4.2.1.avif",
+          "color": "black"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "dataColor": [
+        {
+          "name": "cream",
+          "hexCode": "bg-FAF6F3"
+        },
+        {
+          "name": "yellow",
+          "hexCode": "bg-EBCC7E"
+        },
+        {
+          "name": "black",
+          "hexCode": "bg-FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "category": "winter",
+      "name": "Middle Gauge Crewneck Cardigan (Long Sleeve)",
+      "price": 790,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "../../public/images/product-6.0.webp",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.0.1.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.0.2.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.0.3.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.1.webp",
+          "color": "blue"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.2.webp",
+          "color": "purple"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.3.webp",
+          "color": "gray"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.0.4.avif",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.1.1.avif",
+          "color": "blue"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.2.1.avif",
+          "color": "purple"
+        },
+        {
+          "dataPreview": "../../public/images/product-6.3.1.avif",
+          "color": "gray"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "dataColor": [
+        {
+          "name": "cream",
+          "hexCode": "bg-FAF6F3"
+        },
+        {
+          "name": "blue",
+          "hexCode": "bg-9DB1C8"
+        },
+        {
+          "name": "purple",
+          "hexCode": "bg-AA9BB4"
+        },
+        {
+          "name": "gray",
+          "hexCode": "bg-505554"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "email": "zo@mail.com",
+      "password": "$2a$10$OY6xL4mANGwPo2112hE8bu43R5A1ylQ8.n7nfO0yK9EZeXObrWBMi",
+      "name": "zo",
+      "role": "user",
+      "id": 1
+    },
+    {
+      "email": "bisri@gmail.com",
+      "password": "$2a$10$vXmG3y5qBwutPfO5In6YxOPS4ulrGpmU0xHxIQQQbIJar39T5kOJu",
+      "name": "bisri",
+      "role": "admin",
+      "id": 2
+    }
+  ]
+}
