@@ -5,41 +5,53 @@ import { CiViewList } from "react-icons/ci";
 import { RiPlayListAddLine } from "react-icons/ri";
 import { useState } from "react";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar(props) {
   const {loc, open, handleOpen} = props;
+  const navigate = useNavigate()
   const [menu, setMenu] = useState([
     {
       id: 1,
       name: "order",
       icon: <CiShoppingTag size={25}/>,
+      path: "/dashboard"
     },
     {
       id: 2,
       name: "history",
       icon: <VscHistory size={25} />,
+      path: "/history"
     },
     {
       id: 3,
       name: "list product",
       icon: <CiViewList size={25} />,
+      path: "/productlist"
     },
     {
       id: 4,
       name: "add product",
       icon: <RiPlayListAddLine size={25} />,
+      path: "/updateproduct"
     },
     {
       id: 5,
       name: "list category",
       icon: <CiViewList size={25} />,
+      path: "/categorylist"
     },
     {
       id: 6,
       name: "Add category",
       icon: <RiPlayListAddLine size={25} />,
+      path: "/updatecategory"
     },
   ]);
+
+  const handleClick = (path) =>{
+    navigate(path)
+  }
 
   return (
     <div className={open ? "block w-[15vw]" : "hidden"}>
@@ -55,6 +67,7 @@ export default function Sidebar(props) {
               clsx(data.name === loc ? "!bg-slate-300" : "!bg-blue-400",
               "flex px-6 py-3 w-full gap-2 hover:bg-slate-200 cursor-pointer capitalize font-semibold")
             }
+            onClick={()=>handleClick(data.path)}
           >
             <div>{data.icon}</div>
             <div>{data.name}</div>

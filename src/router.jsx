@@ -7,6 +7,8 @@ import AddProduct from "./pages/admin/addProduct";
 import EditProduct from "./pages/admin/editProduct";
 import Cart from "./pages/user/cart";
 import SummaryDetail from "./pages/user/summaryDetail";
+import History from "./pages/user/history";
+import TransactionDetail from "./pages/user/transactionDetail";
 
 export default function Router() {
   return (
@@ -21,6 +23,8 @@ export default function Router() {
       <Route path="/productdetail/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/summary-detail" element={<SummaryDetail/>} />
+      <Route path="/history" element={<History/>}/>
+      <Route path="/transaction-detail" element={<TransactionDetail/>}/>
 
       <Route
         path="*"
