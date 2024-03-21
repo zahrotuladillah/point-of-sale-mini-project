@@ -9,24 +9,15 @@ import clsx from "clsx";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import Sidebar from "../../layouts/sidebar";
 
-function AddProduct() {
+function AddCategory() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const schema = yup.object().shape({
-    category: yup
-      .string()
-      .oneOf(["best seller", "autumn", "winter", "daily"])
-      .required("Category is required"),
-    name: yup.string().required("Field Name is required"),
-    price: yup.number().positive().required("Price is required"),
-    url: yup.string().required("Url Product is required"),
+    name: yup.string().required("Field Name is required")
   });
 
   const [defaultValues, setDefaultVal] = useState({
-    name: "",
-    price: "",
-    category: "",
-    url: "",
+    name: ""
   });
 
   const {
@@ -41,13 +32,10 @@ function AddProduct() {
   });
 
   const onSubmitForm = (data) => {
-    console.log("submit ", data);
+    // console.log("submit ", data);
 
     const payload = {
-      category: data.category,
-      name: data.name,
-      price: data.price,
-      url: data.url,
+      name: data.name
     };
 
     // axios
@@ -86,7 +74,7 @@ function AddProduct() {
           </div>
           <div className="w-full">
             <div className="w-fit mb-[5vh]">
-              <div className="uppercase text-4xl font-semibold">add product</div>
+              <div className="uppercase text-4xl font-semibold">add category</div>
               <hr className="border-[3px] border-black" />
             </div>
             <form
@@ -104,50 +92,11 @@ function AddProduct() {
                 <p className="error text-red-500">{errors.name?.message}</p>
               </div>
 
-              <div>
-                <label htmlFor="category">Category</label>
-                <select
-                  placeholder="Category"
-                  className="p-4 pe-12 w-full rounded-lg border-[1px] border-gray-400 text-gray-700 sm:text-sm"
-                  {...register("category")}
-                  id="category"
-                >
-                  <option value="">Please select</option>
-                  <option value="best seller">Best Seller</option>
-                  <option value="autumn">Autumn</option>
-                  <option value="winter">Winter</option>
-                  <option value="daily">Daily</option>
-                </select>
-                <p className="error text-red-500">{errors.category?.message}</p>
-              </div>
-
-              <div>
-                <label htmlFor="price">Price</label>
-                <input
-                  placeholder="Price"
-                  className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
-                  {...register("price")}
-                  id="price"
-                />
-                <p className="error text-red-500">{errors.price?.message}</p>
-              </div>
-
-              <div>
-                <label htmlFor="url">Url Image</label>
-                <input
-                  placeholder="url"
-                  className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
-                  {...register("url")}
-                  id="url"
-                />
-                <p className="error text-red-500">{errors.url?.message}</p>
-              </div>
-
               <button
                 className="mt-4 rounded-lg bg-first p-3 text-xl font-bold hover:bg-yellow-600 text-white self-center w-full"
                 type="submit"
               >
-                Add Product
+                Add Category
               </button>
             </form>
           </div>
@@ -157,4 +106,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddCategory;

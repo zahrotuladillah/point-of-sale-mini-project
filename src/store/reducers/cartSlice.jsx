@@ -9,15 +9,16 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addDataCart(state, action) {
-      const { data, qty, prod, color, size } = action.payload;
+      const { data, qty } = action.payload;
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === data.id && item.size === size && item.color === color
+        item => item.id === data.id
       );
       console.log("ada ",existingItemIndex)
       if (existingItemIndex !== -1) {
-        state.dataCart[existingItemIndex].qty += qty;
+        state.dataCart[existingItemIndex].qty += 1;
       } else {
-        state.dataCart.push({ ...data, qty, prod, color, size });
+        console.log(data, qty, "yu",action.payload)
+        state.dataCart.push({ ...data, qty });
       }
     },
     removeAllDataCart(state) {
@@ -27,18 +28,16 @@ const cartSlice = createSlice({
       state.dataCart = state.dataCart.filter(item => item.id !== action.payload.id);
     },
     incrementQty(state, action) {
-      const { id, color, size } = action.payload;
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === id && item.size === size && item.color === color
+        item => item.id === action.payload.id 
       );
       if (existingItemIndex !== -1) {
         state.dataCart[existingItemIndex].qty++;
       }
     },
     decrementQty(state, action) {
-      const { id, color, size } = action.payload;
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === id && item.size === size && item.color === color
+        item => item.id === action.payload.id 
       );
       if (existingItemIndex !== -1 && state.dataCart[existingItemIndex].qty > 1) {
         state.dataCart[existingItemIndex].qty--;

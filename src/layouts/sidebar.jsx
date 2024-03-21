@@ -33,7 +33,7 @@ export default function Sidebar(props) {
       id: 4,
       name: "add product",
       icon: <RiPlayListAddLine size={25} />,
-      path: "/updateproduct"
+      path: "/addproduct"
     },
     {
       id: 5,
@@ -45,7 +45,7 @@ export default function Sidebar(props) {
       id: 6,
       name: "Add category",
       icon: <RiPlayListAddLine size={25} />,
-      path: "/updatecategory"
+      path: "/addcategory"
     },
   ]);
 
@@ -55,7 +55,7 @@ export default function Sidebar(props) {
 
   return (
     <div className={open ? "block w-[15vw]" : "hidden"}>
-      {console.log(menu)}
+      {/* {console.log(menu)} */}
       <div onClick={()=>{handleOpen()}} className="mb-[4vh] p-2 border border-slate-400 rounded-lg w-fit hover:border-black cursor-pointer ml-auto mr-4">
         <HiArrowLongLeft size={25} />
       </div>
@@ -71,7 +71,7 @@ export default function Sidebar(props) {
           >
             <div>{data.icon}</div>
             <div>{data.name}</div>
-            {console.log(loc, data.name === loc)}
+            {/* {console.log(loc, data.name === loc)} */}
           </div>
         ))}
       </div>

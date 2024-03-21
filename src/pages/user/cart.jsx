@@ -54,12 +54,12 @@ export default function Cart() {
   };
 
   const handleIncrementQty = (id, color, size) => {
-    console.log("hin",id,color,size)
+    // console.log("hin",id,color,size)
     dispatch(incrementQty({id, color, size}));
   };
 
   const handleDecrementQty = (id, color, size) => {
-    console.log("hde",id,color,size)
+    // console.log("hde",id,color,size)
     dispatch(decrementQty({id, color, size}));
   };
 

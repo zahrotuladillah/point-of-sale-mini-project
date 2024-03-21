@@ -68,7 +68,7 @@ export default function History() {
   //     setTable(tabulator);
   //   };
   const handleDetail = (id) => {
-    console.log(id);
+    // console.log(id);
     // navigate(`/detail-transaction/${id}`, {
     //   state: {
     //     id: id,

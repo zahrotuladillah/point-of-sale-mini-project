@@ -4,7 +4,7 @@ export default function Filter(props) {
   const { list, filter, onChange } = props;
   return (
     <div className="max-w-[60vw] flex gap-3 overflow-x-auto">
-      {console.log(filter)}
+      {/* {console.log(filter)} */}
       {list?.map((data, idx) => (
         <div
           key={idx}

@@ -15,7 +15,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import clsx from "clsx";
 import Sidebar from "../../layouts/sidebar";
 
-function CategoryList() {
+function CategoryDetail() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const [products, setProducts] = useState();
@@ -23,23 +23,27 @@ function CategoryList() {
   const data = [
     {
       id: 1,
+      image:
+        "https://files.kfcku.com/uploads/media/dummy/food/w_classic_combo_l.png",
       nama: "Combo Hemat",
-      product: 3,
+      harga: 30000,
+      category: 3,
     },
     {
       id: 2,
+      image:
+        "https://files.kfcku.com/uploads/media/dummy/food/w_classic_combo_l.png",
       nama: "Combo Hemat",
-      product: 3,
+      harga: 30000,
+      category: 3,
     },
     {
       id: 3,
+      image:
+        "https://files.kfcku.com/uploads/media/dummy/food/w_classic_combo_l.png",
       nama: "Combo Hemat",
-      product: 3,
-    },
-    {
-      id: 4,
-      nama: "Combo Hemat",
-      product: 3,
+      harga: 30000,
+      category: 3,
     },
   ];
 
@@ -92,7 +96,7 @@ function CategoryList() {
   // }
 
   const handleAdd = () => {
-    navigate("/addcategory");
+    navigate("/addproduct");
   };
 
   const handleDelete = (id) => {
@@ -137,21 +141,27 @@ function CategoryList() {
             <HiArrowLongRight size={25} />
           </div>
           <div className="w-full">
-            <div className="flex justify-between mb-[5vh]">
-              <div>
-                <div className="uppercase text-4xl font-semibold">
-                  List Category
-                </div>
-                <hr className="border-[3px] border-orange" />
+            <div className="w-fit mb-[5vh]">
+              <div className="uppercase text-4xl font-semibold">
+                Category Detail
               </div>
-              <button
-                onClick={handleAdd}
-                className="p-4 text-lg font-semibold bg-second rounded-lg text-first hover:text-third hover:bg-first w-fit"
-              >
-                Add Product
-              </button>
+              <hr className="border-[3px] border-orange" />
             </div>
             {/* {isLoading ? <HashLoader/> :  */}
+            <div className="flex flex-col space-y-2 mb-[3vh] ">
+              <div className="flex">
+                <div>ID</div>
+                <div>: ID</div>
+              </div>
+              <div className="flex">
+                <div>Name</div>
+                <div>: category name</div>
+              </div>
+              <div className="flex">
+                <div>Related Products</div>
+                <div>: 3</div>
+              </div>
+            </div>
             <div className="products">
               <table
                 id="example"
@@ -163,7 +173,7 @@ function CategoryList() {
                       scope="col"
                       className="fw-semibold text-center bg-first"
                     >
-                      ID
+                      Image
                     </th>
                     <th
                       scope="col"
@@ -175,7 +185,13 @@ function CategoryList() {
                       scope="col"
                       className="fw-semibold text-center bg-first"
                     >
-                      Product
+                      Price
+                    </th>
+                    <th
+                      scope="col"
+                      className="fw-semibold text-center bg-first"
+                    >
+                      Category
                     </th>
                     <th
                       scope="col"
@@ -188,17 +204,18 @@ function CategoryList() {
                 <tbody className="text-center border border-solid border-t-first">
                   {data?.map((prod) => (
                     <tr key={prod.id}>
-                      <td>{prod.id}</td>
+                      <td>
+                        <img
+                          src={prod.image}
+                          alt=""
+                          className="max-w-[5vw] m-auto"
+                        />
+                      </td>
                       <td>{prod.nama}</td>
-                      <td>{prod.product}</td>
+                      <td>{prod.harga}</td>
+                      <td>{prod.category}</td>
                       <td>
                         <div className="flex font-semibold justify-center gap-3">
-                          <button
-                            onClick={() => handleEdit(prod.id)}
-                            className="m-0 p-0"
-                          >
-                            Detail
-                          </button>
                           <button
                             onClick={() => handleEdit(prod.id)}
                             className="m-0 p-0"
@@ -244,4 +261,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList;
+export default CategoryDetail;

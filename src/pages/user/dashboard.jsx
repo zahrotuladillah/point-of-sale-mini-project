@@ -14,12 +14,16 @@ import Summary from "../../layouts/summary";
 import Filter from "../../component/filter";
 import clsx from "clsx";
 import { HiArrowLongRight } from "react-icons/hi2";
+import { useDispatch, useSelector } from "react-redux";
+import { addDataCart } from "../../store/reducers/cartSlice";
 
 function Dashboard() {
   const navigate = useNavigate();
   const [products, setProducts] = useState();
   const [filter, setFilter] = useState("foods");
   const [open, setOpen] = useState(true);
+  const dispatch = useDispatch();
+  const [add, setAdd] = useState(false)
   const listFilter = ["foods", "snacks", "desserts", "beverages"];
   const menu = [
     {
@@ -103,20 +107,6 @@ function Dashboard() {
       category: "foods",
     },
   ];
-
-  const handleProduct = (id) => {
-    console.log(id);
-    navigate(`/productdetail/${id}`, {
-      state: {
-        id: id,
-      },
-    });
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   //   use react swr to fetch data
   //   const getProducts = (url) => axios.get(url).then((response) => response.data);
 
@@ -129,6 +119,19 @@ function Dashboard() {
   //   );
 
   //   if (error) return alert(JSON.stringify(erroroccured));
+
+  // const [dataCart, setDataCart]= useState(useSelector((state) => state.cart.dataCart));
+  const dataCart = useSelector((state) => state.cart.dataCart)
+  // useEffect(()=>{
+  //    setDataCart(useSelector((state) => state.cart.dataCart));
+  // },[add])
+
+  const handleAddCart = (data) => {
+    console.log("add",data);
+    const qty=1;
+    dispatch(addDataCart({data,qty}));
+    setAdd(!add)
+  };
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
@@ -184,16 +187,22 @@ function Dashboard() {
                 <BsFilterRight size={30} />
               </div>
             </div>
-            <div className={clsx(open ? "grid-cols-3" : "grid-cols-4","container m-auto grid gap-4 max-h-[70vh] overflow-y-auto py-4")}>
+            <div
+              className={clsx(
+                open ? "grid-cols-3" : "grid-cols-4",
+                "container m-auto grid gap-4 max-h-[70vh] overflow-y-auto py-4"
+              )}
+            >
               {menu?.map((data) => (
-                <Product
-                  key={data.id}
-                  name={data.name}
-                  image={data.image}
-                  price={data.price}
-                  category={data.category}
-                  open={open}
-                />
+                <div key={data.id} onClick={() => handleAddCart(data)}>
+                  <Product
+                    name={data.name}
+                    image={data.image}
+                    price={data.price}
+                    category={data.category}
+                    open={open}
+                  />
+                </div>
               ))}
             </div>
             <div className="">
@@ -207,7 +216,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="w-[25vw] border-l border-l-black">
-        <Summary data={menu} />
+        <Summary dataCart={dataCart}/>
       </div>
     </div>
   );
