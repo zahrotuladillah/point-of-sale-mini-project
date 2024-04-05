@@ -1,4 +1,4 @@
-package com.zo.pointofview.product;
+package com.zo.pointofsale.category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,24 +6,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-// import lombok.Getter;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-// import lombok.Setter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 @Data
 @NoArgsConstructor
-public class Product {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long pId;
+    private Long cId;
     @Column(name = "name")
-    private String pName;
-    @Column(name = "price")
-    private Long pPrice;
-    @Column(name = "image")
-    private String pImage;
-    @Column(name = "categoryid")
-    private Long PCategoryId;
+    private String cName;
 }

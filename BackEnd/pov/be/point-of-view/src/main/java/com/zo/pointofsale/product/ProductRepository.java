@@ -1,4 +1,4 @@
-package com.zo.pointofview.product;
+package com.zo.pointofsale.product;
 
 import java.util.List;
 import org.springframework.data.domain.Sort;

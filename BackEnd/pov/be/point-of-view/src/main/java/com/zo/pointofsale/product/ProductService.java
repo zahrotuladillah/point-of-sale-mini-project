@@ -1,4 +1,4 @@
-package com.zo.pointofview.product;
+package com.zo.pointofsale.product;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.zo.pointofview.transaction_detail.Transaction_Detail;
-import com.zo.pointofview.transaction_detail.Transaction_DetailRepository;
+import com.zo.pointofsale.transaction_detail.Transaction_Detail;
+import com.zo.pointofsale.transaction_detail.Transaction_DetailRepository;
 
 @Service
 public class ProductService {

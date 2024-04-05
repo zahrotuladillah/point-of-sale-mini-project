@@ -1,4 +1,4 @@
-package com.zo.pointofview.category;
+package com.zo.pointofsale.category;
 
 // import java.util.List;
 

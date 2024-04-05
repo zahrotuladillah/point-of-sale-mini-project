@@ -1,4 +1,4 @@
-package com.zo.pointofview.transaction;
+package com.zo.pointofsale.transaction;
 
 import java.util.List;
 import java.util.Optional;

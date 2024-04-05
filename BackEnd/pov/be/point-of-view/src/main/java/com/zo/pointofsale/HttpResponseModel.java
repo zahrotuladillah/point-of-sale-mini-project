@@ -1,4 +1,4 @@
-package com.zo.pointofview;
+package com.zo.pointofsale;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

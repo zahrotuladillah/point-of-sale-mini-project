@@ -1,4 +1,4 @@
-package com.zo.pointofview.category;
+package com.zo.pointofsale.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zo.pointofview.HttpResponseModel;
+import com.zo.pointofsale.HttpResponseModel;
 
 import java.util.List;
 import java.util.Optional;

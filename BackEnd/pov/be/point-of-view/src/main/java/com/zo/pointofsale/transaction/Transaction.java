@@ -1,11 +1,11 @@
-package com.zo.pointofview.transaction;
+package com.zo.pointofsale.transaction;
 
 // import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import com.zo.pointofview.transaction_detail.Transaction_Detail;
+import com.zo.pointofsale.transaction_detail.Transaction_Detail;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -1,4 +1,4 @@
-package com.zo.pointofview.category;
+package com.zo.pointofsale.category;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.zo.pointofview.product.Product;
-import com.zo.pointofview.product.ProductRepository;
+import com.zo.pointofsale.product.Product;
+import com.zo.pointofsale.product.ProductRepository;
 
 @Service
 public class CategoryService {

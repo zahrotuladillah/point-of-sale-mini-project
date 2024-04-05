@@ -1,4 +1,4 @@
-package com.zo.pointofview.transaction_detail;
+package com.zo.pointofsale.transaction_detail;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
