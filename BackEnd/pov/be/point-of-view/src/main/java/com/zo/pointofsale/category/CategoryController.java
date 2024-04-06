@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zo.pointofsale.HttpResponseModel;
@@ -49,6 +50,15 @@ public class CategoryController {
         return resp;
     }
 
+    @GetMapping("/getCategoryByName")
+    public HttpResponseModel<Long> getCategoryByName(@RequestParam String cName) {
+        HttpResponseModel<Long> resp = new HttpResponseModel<>();
+        resp.setMessage("OK");
+        resp.setStatus(200);
+        resp.setData(categoryService.getCategoryByName(cName));
+        return resp;
+    }
+
     @PutMapping("/updateCategory/{cId}")
     public HttpResponseModel<Category> updateCategory(@PathVariable Long cId, @RequestBody Category category) {
         HttpResponseModel<Category> resp = new HttpResponseModel<>();
@@ -59,8 +69,8 @@ public class CategoryController {
         return resp;
     }
 
-    @DeleteMapping("/deleteCategorybyId/{cId}")
-    public HttpResponseModel<List<Category>> deleteCategoryById(@PathVariable Long cId) {
+    @DeleteMapping("/deleteCategorybyId")
+    public HttpResponseModel<List<Category>> deleteCategoryById(@RequestParam("id") Long cId) {
         HttpResponseModel<List<Category>> resp = new HttpResponseModel<>();
         resp.setMessage("OK");
         resp.setStatus(200);

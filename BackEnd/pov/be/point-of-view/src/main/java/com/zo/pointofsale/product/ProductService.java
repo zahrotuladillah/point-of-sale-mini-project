@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.zo.pointofsale.category.CategoryRepository;
 import com.zo.pointofsale.transaction_detail.Transaction_Detail;
 import com.zo.pointofsale.transaction_detail.Transaction_DetailRepository;
 
@@ -17,6 +18,9 @@ public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Autowired
     Transaction_DetailRepository transaction_DetailRepository;
@@ -41,8 +45,9 @@ public class ProductService {
         return productRepository.findProductNameById(pId);
     }
 
-    public List<Product> getBypNameAndCategory(String name, Long cId, String sortBy, String direction) {
+    public List<Product> getBypNameAndCategory(String name, String cName, String sortBy, String direction) {
         Sort sort = null;
+        Long cId;
         if (direction != null && sortBy != null) {
             if ("ASC".equalsIgnoreCase(direction)) {
                 sort = Sort.by(Sort.Direction.ASC, sortBy);
@@ -52,7 +57,8 @@ public class ProductService {
         }
 
         if (name != null && !name.equals("null")) {
-            if (cId != 0) {
+            if (cName != "") {
+                cId = categoryRepository.findCategoryByName(cName);
                 return sort != null ? productRepository.findBypNameContainsAndPCategoryId(name, cId, sort)
                         : productRepository.findBypNameContainsAndPCategoryId(name, cId);
             } else {
@@ -60,7 +66,8 @@ public class ProductService {
                         : productRepository.findBypNameContains(name);
             }
         } else {
-            if (cId != 0) {
+            if (cName != "") {
+                cId = categoryRepository.findCategoryByName(cName);
                 return sort != null ? productRepository.findByPCategoryId(cId, sort)
                         : productRepository.findByPCategoryId(cId);
             } else {

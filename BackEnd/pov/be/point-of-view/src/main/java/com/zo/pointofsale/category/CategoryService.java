@@ -46,4 +46,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Long getCategoryByName(String cName) {
+        return categoryRepository.findCategoryByName(cName);
+    }
+
 }

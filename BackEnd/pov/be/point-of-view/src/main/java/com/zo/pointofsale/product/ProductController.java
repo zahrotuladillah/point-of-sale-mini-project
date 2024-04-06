@@ -65,13 +65,13 @@ public class ProductController {
     @GetMapping("/getProductFiltered")
     public HttpResponseModel<List<Product>> findProductsByNameAndCategoryIdSorted(
             @RequestParam("name") String pName,
-            @RequestParam("categoryId") Long pCategoryId,
+            @RequestParam("categoryName") String pCategoryName,
             @RequestParam("sortBy") String sortBy,
             @RequestParam("sortDirection") String sortDirection) {
         HttpResponseModel<List<Product>> resp = new HttpResponseModel<>();
         resp.setMessage("OK");
         resp.setStatus(200);
-        resp.setData(productService.getBypNameAndCategory(pName, pCategoryId, sortBy, sortDirection));
+        resp.setData(productService.getBypNameAndCategory(pName, pCategoryName, sortBy, sortDirection));
         return resp;
     }
 
@@ -86,7 +86,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/deleteProductbyId")
-    public HttpResponseModel<List<Product>> deleteProductById(@RequestParam Long pId) {
+    public HttpResponseModel<List<Product>> deleteProductById(@RequestParam("id") Long pId) {
         HttpResponseModel<List<Product>> resp = new HttpResponseModel<>();
         resp.setMessage("OK");
         resp.setStatus(200);
