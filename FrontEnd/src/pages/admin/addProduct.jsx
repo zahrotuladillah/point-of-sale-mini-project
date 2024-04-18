@@ -44,24 +44,30 @@ function AddProduct() {
     console.log("submit ", data);
 
     const payload = {
-      category: data.category,
-      name: data.name,
-      price: data.price,
-      url: data.url,
+      pcategoryId: data.category,
+      pname: data.name,
+      pprice: data.price,
+      pimage: data.url,
     };
 
-    // axios
-    //     .post("http://localhost:3000/product", payload)
-    //     .then(() => {
-    //         Swal.fire({
-    //             title: "Good job!",
-    //             text: "Data added!",
-    //             icon: "success"
-    //         });
-    //         reset();
-    //     })
-    //     .catch((error) => console.log(error));
-    navigate("/productlist");
+    axios
+      .post("http://localhost:8080/saveProduct", payload)
+      .then(() => {
+        Swal.fire({
+          title: "Good job!",
+          text: "Data added!",
+          icon: "success",
+        });
+        reset();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error,
+        });
+      });
+    navigate("/list-product");
   };
 
   const handleOpen = () => {
@@ -71,7 +77,7 @@ function AddProduct() {
   return (
     <div className="m-0 max-h-[100vh] min-h-[100vh] py-10 flex">
       <div className="border-r border-r-black">
-        <Sidebar loc={"order"} open={open} handleOpen={handleOpen} />
+        <Sidebar open={open} handleOpen={handleOpen} />
       </div>
       <div className={clsx(open ? "w-[75vw]" : "w-[85vw]", "")}>
         <div className="w-[80%] m-auto flex">

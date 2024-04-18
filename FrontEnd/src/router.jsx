@@ -17,21 +17,21 @@ export default function Router() {
   return (
     <Routes>
 
-      <Route path="/productlist" element={<ProductList />} />
-      <Route path="/addproduct" element={<AddProduct />} />
-      <Route path="/editproduct/:id" element={<EditProduct />} />
-      <Route path="/categorylist" element={<CategoryList/>}/>
-      <Route path="/addcategory" element={<AddCategory/>}/>
-      <Route path="productdetail" element={<ProductDetail/>}/>
-      <Route path="categorydetail" element={<CategoryDetail/>}/>
+      <Route path="/list-product" element={<ProductList />} />
+      <Route path="/add-product" element={<AddProduct />} />
+      <Route path="/edit-product/:id" element={<EditProduct />} />
+      <Route path="/list-category" element={<CategoryList/>}/>
+      <Route path="/add-category" element={<AddCategory/>}/>
+      <Route path="/detail-product" element={<ProductDetail/>}/>
+      <Route path="/detail-category" element={<CategoryDetail/>}/>
 
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/" element={<Navigate to="/dashboard" />} />
       {/* <Route path="/productdetail/:id" element={<ProductDetail />} /> */}
       <Route path="/cart" element={<Cart />} />
-      <Route path="/summary-detail" element={<SummaryDetail/>} />
+      <Route path="/detail-summary" element={<SummaryDetail/>} />
       <Route path="/history" element={<History/>}/>
-      <Route path="/transaction-detail" element={<TransactionDetail/>}/>
+      <Route path="/detail-transaction" element={<TransactionDetail/>}/>
 
       <Route
         path="*"

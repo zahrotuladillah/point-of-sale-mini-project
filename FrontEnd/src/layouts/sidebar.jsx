@@ -5,10 +5,20 @@ import { CiViewList } from "react-icons/ci";
 import { RiPlayListAddLine } from "react-icons/ri";
 import { useState } from "react";
 import clsx from "clsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Sidebar(props) {
-  const {loc, open, handleOpen} = props;
+  const {open, handleOpen} = props;
+  const location = useLocation();
+  const [loc, setLoc] = useState(() => {
+    // Mendapatkan path saat ini
+    const currentPath = window.location.pathname.toLowerCase();
+
+    // Mendapatkan order dari path
+    let init = currentPath.split('/').pop().replace("-", ' ').toLowerCase();
+  
+    return init;
+});
   const navigate = useNavigate()
   const [menu, setMenu] = useState([
     {
@@ -27,25 +37,25 @@ export default function Sidebar(props) {
       id: 3,
       name: "list product",
       icon: <CiViewList size={25} />,
-      path: "/productlist"
+      path: "/list-product"
     },
     {
       id: 4,
       name: "add product",
       icon: <RiPlayListAddLine size={25} />,
-      path: "/addproduct"
+      path: "/add-product"
     },
     {
       id: 5,
       name: "list category",
       icon: <CiViewList size={25} />,
-      path: "/categorylist"
+      path: "/list-category"
     },
     {
       id: 6,
-      name: "Add category",
+      name: "add category",
       icon: <RiPlayListAddLine size={25} />,
-      path: "/addcategory"
+      path: "/add-category"
     },
   ]);
 
@@ -55,7 +65,7 @@ export default function Sidebar(props) {
 
   return (
     <div className={open ? "block w-[15vw]" : "hidden"}>
-      {/* {console.log(menu)} */}
+      {console.log(loc)}
       <div onClick={()=>{handleOpen()}} className="mb-[4vh] p-2 border border-slate-400 rounded-lg w-fit hover:border-black cursor-pointer ml-auto mr-4">
         <HiArrowLongLeft size={25} />
       </div>

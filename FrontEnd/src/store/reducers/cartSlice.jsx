@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   dataCart: [],
+  total: 0
 };
 
 const cartSlice = createSlice({
@@ -11,25 +12,26 @@ const cartSlice = createSlice({
     addDataCart(state, action) {
       const { data, qty } = action.payload;
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === data.id
+        item => item.pid === data.pid
       );
-      console.log("ada ",existingItemIndex)
+      // console.log("ada ",existingItemIndex)
       if (existingItemIndex !== -1) {
         state.dataCart[existingItemIndex].qty += 1;
       } else {
-        console.log(data, qty, "yu",action.payload)
+        // console.log(data, qty, "yu",action.payload)
         state.dataCart.push({ ...data, qty });
       }
     },
     removeAllDataCart(state) {
       state.dataCart = [];
+      state.total=0
     },
     removeData(state, action) {
-      state.dataCart = state.dataCart.filter(item => item.id !== action.payload.id);
+      state.dataCart = state.dataCart.filter(item => item.pid !== action.payload);
     },
     incrementQty(state, action) {
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === action.payload.id 
+        item => item.pid === action.payload
       );
       if (existingItemIndex !== -1) {
         state.dataCart[existingItemIndex].qty++;
@@ -37,7 +39,7 @@ const cartSlice = createSlice({
     },
     decrementQty(state, action) {
       const existingItemIndex = state.dataCart.findIndex(
-        item => item.id === action.payload.id 
+        item => item.pid === action.payload
       );
       if (existingItemIndex !== -1 && state.dataCart[existingItemIndex].qty > 1) {
         state.dataCart[existingItemIndex].qty--;
@@ -46,6 +48,14 @@ const cartSlice = createSlice({
     updateDataCart(state, action) {
       state.dataCart = action.payload;
     },
+    countTotal(state) {
+      let temp = 0;
+      state.dataCart.forEach((item) => {
+        temp += item.qty * item.pprice;
+      });
+      // console.log("total",temp)
+      state.total = temp;
+    }
   },
 });
 
@@ -56,6 +66,7 @@ export const {
   incrementQty,
   decrementQty,
   updateDataCart,
+  countTotal
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

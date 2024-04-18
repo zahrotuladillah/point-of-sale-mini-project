@@ -75,7 +75,7 @@ export default function ProductDetail() {
   return (
     <div className="m-0 max-h-[100vh] min-h-[100vh] py-10 flex">
       <div className="border-r border-r-black">
-        <Sidebar loc={"order"} open={open} handleOpen={handleOpen} />
+        <Sidebar open={open} handleOpen={handleOpen} />
       </div>
       <div className={clsx(open ? "w-[75vw]" : "w-[85vw]", "")}>
         <div className="w-[80%] m-auto flex">

@@ -92,7 +92,7 @@ export default function Cart() {
 
   return (
     <div className="z-0 my-[5vh] max-w-[80%] m-auto">
-      {console.log("cart ", dataCart)}
+      {/* {console.log("cart ", dataCart)} */}
       <section>
         <h1 className="text-3xl font-semibold mb-[3vh]">Product</h1>
         <div className="flex justify-between items-center align-middle text-center font-semibold bg-first rounded-lg my-2 p-4">

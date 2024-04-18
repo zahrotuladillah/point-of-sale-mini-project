@@ -11,6 +11,7 @@ import { createSearchParams } from "react-router-dom";
 import Sidebar from "../../layouts/sidebar";
 import { BsFilterRight } from "react-icons/bs";
 import Summary from "../../layouts/summary";
+import Category from "../../component/category";
 import Filter from "../../component/filter";
 import clsx from "clsx";
 import { HiArrowLongRight, HiMiniArrowsUpDown } from "react-icons/hi2";
@@ -19,6 +20,7 @@ import { addDataCart } from "../../store/reducers/cartSlice";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [showFilter, setShowFilter] = useState(false);
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
@@ -26,7 +28,13 @@ function Dashboard() {
   const [open, setOpen] = useState(true);
   const dispatch = useDispatch();
   const [add, setAdd] = useState(false);
-  const listFilter = ["all", "foods", "snacks", "desserts", "beverages"];
+  const [listFilter, setListFilter] = useState([
+    "all",
+    "foods",
+    "snacks",
+    "desserts",
+    "beverages",
+  ]);
   // const menu = [
   //   {
   //     id: 1,
@@ -112,30 +120,38 @@ function Dashboard() {
   //   use react swr to fetch data
   const [menu, setMenu] = useState([]);
 
-  const getProducts = (url) => axios.get(url).then((response) => response.data);
+  const getData = (url) => axios.get(url).then((response) => response.data);
 
-  // useEffect(() => {
-    let sortDir = "",
-    categoryName = "";
-    if ((sort === "asc") | (sort === "desc")) sortDir = sort.toUpperCase;
-    if (filter !== "all") {
-      categoryName = filter
+  let categoryName = "";
+
+  if (filter !== "all") {
+    categoryName = filter;
+  }
+  const { data, isLoading, error, mutate } = useSWR(
+    `http://localhost:8080/getProductFiltered?name=${search}&categoryName=${categoryName}&sortBy=${sortBy}&sortDirection=${sort}`,
+    getData,
+    {
+      onSuccess: (data) => setMenu(data.data),
+      // onSuccess: (data) => console.log(data.data),
     }
-    const { data, isLoading, error, mutate } = useSWR(
-      `http://localhost:8080/getProductFiltered?name=${search}&categoryName=${categoryName}&sortBy=${sortBy}&sortDirection=${sortDir}`,
-      getProducts,
-      {
-        onSuccess: (data) => setMenu(data.data),
-        // onSuccess: (data) => console.log(data.data),
-      }
-    );
-    if (error) return alert(JSON.stringify(error));
+  );
+  if (error) return alert(JSON.stringify(error));
   // }, [search, filter, sortBy, sort]);
+  const {
+    data: dataFilter,
+    isLoading: loadFilter,
+    error: errFilter,
+    mutate: mutateFilter,
+  } = useSWR(`http://localhost:8080/getCategory`, getData, {
+    onSuccess: (data) => setListFilter(data.data),
+    // onSuccess: (data) => console.log(data.data),
+  });
+  if (error) return alert(JSON.stringify(error));
 
   const dataCart = useSelector((state) => state.cart.dataCart);
 
   const handleAddCart = (data) => {
-    console.log("add", data);
+    // console.log("add", data);
     const qty = 1;
     dispatch(addDataCart({ data, qty }));
     setAdd(!add);
@@ -151,42 +167,38 @@ function Dashboard() {
 
   const handleSort = () => {
     setSort((prevSort) => {
-      if (prevSort === "") {
-        return "asc";
-      } else if (prevSort === "asc") {
-        return "desc";
-      } else {
-        return "";
+      if (prevSort === "DESC") {
+        return "ASC";
+      } else if (prevSort === "ASC") {
+        return "DESC";
       }
     });
   };
 
-  //   useEffect(() => {
-  //     if (data) {
-  //       if (filter != "all") {
-  //         const temp = data.filter((product) => product.category == filter);
-  //         setProducts(temp);
-  //       } else setProducts(data);
-  //     }
-  //   }, [filter]);
+  const handleSearch = (value) => {
+    setSearch(value);
+  };
 
-  //   if (!data) {
-  //     return <HashLoader />;
-  //   }
+  const toggleFilter = () => {
+    setShowFilter(!showFilter);
+  };
 
-  //   if (!products && data) {
-  //     console.log(data);
-
-  //     setProducts(data);
-  //   }
+  const handleFilterSelection = (opt) => {
+    // Tambahkan logika untuk menangani pemilihan filter atau penutupan Filter di sini
+    setSortBy(opt);
+    // console.log(opt)
+    setSort("ASC");
+    // console.log(sort)
+    setShowFilter(false); // Tutup Filter setelah pemilihan filter
+  };
 
   return (
-    <div className="m-0 max-h-[100vh] py-10 flex">
+    <div className="h-full w-full py-10 flex">
       <div className="border-r border-r-black">
-        <Sidebar loc={"order"} open={open} handleOpen={handleOpen} />
+        <Sidebar open={open} handleOpen={handleOpen} />
       </div>
       <div className={clsx(open ? "w-[60vw]" : "w-[75vw]", "")}>
-        <div className="flex">
+        <div className="flex h-full">
           <div
             onClick={handleOpen}
             className={clsx(
@@ -196,7 +208,7 @@ function Dashboard() {
           >
             <HiArrowLongRight size={25} />
           </div>
-          <div className="max-w-[80%] m-auto">
+          <div className="w-[80%] m-auto h-full relative">
             <div className="flex justify-between mb-[5vh]">
               <div>
                 <div className="uppercase text-4xl font-semibold">{filter}</div>
@@ -218,9 +230,26 @@ function Dashboard() {
                 />
               </div>
               <div className="flex gap-3 h-full items-center !w-[80%] justify-end">
-                <SearchBox />
-                <BsFilterRight size={30} />
-                <HiMiniArrowsUpDown size={30} onClick={handleSort} />
+                <SearchBox search={search} onSearch={handleSearch} />
+                <div className="relative">
+                  <BsFilterRight
+                    size={30}
+                    className="cursor-pointer"
+                    onClick={toggleFilter}
+                  />
+                  {showFilter && (
+                    <div className="absolute top-full mt-2 right-0 z-10">
+                      <div className="bg-white rounded-lg border-2">
+                        <Filter onFilterSelection={handleFilterSelection} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <HiMiniArrowsUpDown
+                  size={30}
+                  onClick={handleSort}
+                  className="cursor-pointer"
+                />
               </div>
             </div>
             <div
@@ -230,23 +259,27 @@ function Dashboard() {
               )}
             >
               {menu?.map((data) => (
-                <div key={data.id} onClick={() => handleAddCart(data)}>
+                <div key={data.pid} onClick={() => handleAddCart(data)}>
                   <Product
                     name={data.pname}
                     image={data.pimage}
                     price={data.pprice}
-                    category={data.pcategory}
+                    category={data.pcategoryId}
                     open={open}
                   />
                 </div>
               ))}
             </div>
-            <div className="max-w-[60vw] flex gap-3 overflow-x-auto">
-              {/* {console.log(filter)} */}
-              {listFilter?.map((data, id) => (
-                <Filter
-                  key={id}
-                  data={data}
+            <div className="w-full flex gap-3 overflow-x-auto absolute bottom-0 container">
+              <Category
+                data={"all"}
+                filter={filter}
+                onChange={handleFilter}
+              />
+              {listFilter?.map((data) => (
+                <Category
+                  key={data.cid}
+                  data={data.cname}
                   filter={filter}
                   onChange={handleFilter}
                 />

@@ -1,7 +1,21 @@
-export default function Payment() {
-  const total = 90000;
-  const paid = 100000;
+import clsx from "clsx";
+import { useState } from "react";
+
+export default function Payment(props) {
+  const {total, onSubmit} = props;
+  const [paid, setPaid] = useState(0)
   let ret = paid - total;
+  const handleFocus = () =>{
+    if(paid==0){
+      setPaid("")
+    }
+  }
+  const handleBlur = () =>{
+    if(paid==""){
+      setPaid(0)
+    }
+  }
+  
   return (
     <div className="max-w-[80%] h-[85vh] m-auto flex flex-col justify-between">
       <div className="flex flex-col gap-4">
@@ -15,7 +29,7 @@ export default function Payment() {
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="paid">Paid</label>
-          <input id="paid" value={paid} className="outline p-2"></input>
+          <input id="paid" value={paid} onChange={(e)=>setPaid(Number(e.target.value))} onFocus={handleFocus} onBlur={handleBlur} className="outline p-2"></input>
         </div>
         <div>
           <div>Return</div>
@@ -23,8 +37,8 @@ export default function Payment() {
         </div>
       </div>
       <button
-        className="rounded-lg bg-black p-2 text-lg font-bold hover:bg-green text-white self-center w-full"
-        type="submit"
+        className={clsx(ret>-1?"bg-green text-gray-800":"bg-black text-white","rounded-lg p-2 text-lg font-bold self-center w-full")}
+        onClick={()=>onSubmit(paid)}
       >
         PROCEED
       </button>
